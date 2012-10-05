@@ -6,6 +6,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,12 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 
-public class SRS {
-	private HttpClient client = new DefaultHttpClient();
+public class SRS  implements Serializable{
 
-	private static String readResponse(HttpResponse response)
+	// It is not serializable, must make it like this..
+	public static HttpClient client = new DefaultHttpClient();
+	
+	private static String readResponse(HttpResponse response) 
 			throws IOException {
 		InputStream in = response.getEntity().getContent();
 		BufferedInputStream bis = new BufferedInputStream(in);
@@ -48,6 +51,12 @@ public class SRS {
 		for ( Element el : gradeDiv){
 			String[] h4 = el.select("h4").get(0).text().split(" ");
 			String currentCourse = h4[h4.length - 2] + " " + h4[h4.length - 1];
+			
+			Grade seperator = new Grade();
+			seperator.course = currentCourse;
+			seperator.name = "seperator";
+			grades.add(seperator);
+			
 			Elements trs = el.select("tr");
 			for ( Element tr: trs){
 				Elements tds = tr.select("td");
@@ -73,7 +82,7 @@ public class SRS {
 	}
 	private String getPage(Page page) throws Exception{
 		String url = "https://stars.bilkent.edu.tr/srs/ajax/";
-		if ( page.equals(Page.Grade)) url += "gradeAndAttend/grade.php";
+		if ( page.equals(Page.Grade)) url += "gradeAndAttend/grade.php?semester=20091";
 		else if ( page.equals(Page.Attendance)) url += "gradeAndAttend/attend.php";
 		
 		HttpGet get = new HttpGet(url);

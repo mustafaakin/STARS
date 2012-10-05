@@ -1,6 +1,8 @@
 package in.mustafaak.stars;
 
-public class Grade {
+import java.io.Serializable;
+
+public class Grade implements Serializable {
 	public String course;
 	public String name;
 	public String type;

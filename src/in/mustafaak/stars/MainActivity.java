@@ -27,20 +27,16 @@ public class MainActivity extends Activity {
 	private EditText user;
 	private EditText pass;
 
-	ProgressDialog loggingDialog;
-	
-	String grades = "";
+	ProgressDialog loggingDialog;	
+	SRS srs;
 	
 	class LoginToStarsTask extends AsyncTask<Void, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			try {
-				SRS s = new SRS();
-				boolean login = s.login(user.getText().toString(), pass
+				srs = new SRS();
+				boolean login = srs.login(user.getText().toString(), pass
 						.getText().toString());
-				if ( login){
-					grades = s.getGrades().toString();
-				}
 				return login;
 			} catch (Exception e) {
 				showMessage("Error, sorry.", Toast.LENGTH_SHORT);
@@ -52,10 +48,10 @@ public class MainActivity extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			loggingDialog.dismiss();
-			showMessage(grades, Toast.LENGTH_LONG);
 			if (result) {
 				Intent i = new Intent();
 				i.setClassName("in.mustafaak.stars", "in.mustafaak.stars.Menu");
+				i.putExtra("SRS", srs);
 				startActivity(i);
 			} else {
 				showMessage("You could not be logged in!", Toast.LENGTH_SHORT);
@@ -86,7 +82,7 @@ public class MainActivity extends Activity {
 				e.commit();
 				loggingDialog = ProgressDialog.show(v.getContext(),
 						"Logging in", "Trying to verify you in the system.", true);
-				new LoginToStarsTask().execute(null);
+				new LoginToStarsTask().execute();				
 			}
 		});
 	}

@@ -16,8 +16,11 @@ public final class R {
     }
     public static final class id {
         public static final int LoginButton=0x7f070004;
+        public static final int RowDescription=0x7f070008;
+        public static final int RowGrade=0x7f070007;
         public static final int lstMenu=0x7f070006;
-        public static final int menu_settings=0x7f070007;
+        public static final int menu_settings=0x7f07000a;
+        public static final int seperatorText=0x7f070009;
         public static final int textView1=0x7f070000;
         public static final int textView2=0x7f070002;
         public static final int textView3=0x7f070005;
@@ -25,20 +28,29 @@ public final class R {
         public static final int txtPass=0x7f070003;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int activity_menu=0x7f030001;
+        public static final int activity_grades=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int activity_menu=0x7f030002;
+        public static final int graderow=0x7f030003;
+        public static final int seperator=0x7f030004;
     }
     public static final class menu {
-        public static final int activity_menu=0x7f060000;
+        public static final int activity_grades=0x7f060000;
+        public static final int activity_menu=0x7f060001;
     }
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int hello_world=0x7f040003;
         public static final int menu_settings=0x7f040001;
+        public static final int title_activity_grades=0x7f040005;
         public static final int title_activity_main=0x7f040002;
         public static final int title_activity_menu=0x7f040004;
     }
     public static final class style {
         public static final int AppTheme=0x7f050000;
+        /**  Any customizations for your app running on pre-3.0 devices here 
+ Any customizations for your app running on pre-3.0 devices here 
+         */
+        public static final int MyAppTheme=0x7f050001;
     }
 }
