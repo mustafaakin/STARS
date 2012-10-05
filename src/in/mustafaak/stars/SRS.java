@@ -13,11 +13,15 @@ import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
-import android.os.AsyncTask;
 
 public class SRS {
 	private HttpClient client = new DefaultHttpClient();
@@ -36,6 +40,47 @@ public class SRS {
 		return buf.toString();
 	}
 
+	public ArrayList<Grade> getGrades() throws Exception{
+		ArrayList<Grade> grades = new ArrayList<Grade>();
+		Document doc = Jsoup.parse(getPage(Page.Grade));
+		Elements gradeDiv = doc.select(".gradeDiv");
+		
+		for ( Element el : gradeDiv){
+			String[] h4 = el.select("h4").get(0).text().split(" ");
+			String currentCourse = h4[h4.length - 2] + " " + h4[h4.length - 1];
+			Elements trs = el.select("tr");
+			for ( Element tr: trs){
+				Elements tds = tr.select("td");
+				if ( tds.size() > 1){
+					Grade grade = new Grade();
+					grade.course = currentCourse;
+					grade.name = tds.get(0).text();
+					grade.type = tds.get(1).text();
+					grade.date = tds.get(2).text();
+					grade.grade = tds.get(3).text();
+					grade.comment = tds.get(4).text();
+					grades.add(grade);
+				} else {
+					
+				}
+			}
+		}
+		return grades;
+	}
+	
+	enum Page {
+		Grade, Attendance, Transcript 
+	}
+	private String getPage(Page page) throws Exception{
+		String url = "https://stars.bilkent.edu.tr/srs/ajax/";
+		if ( page.equals(Page.Grade)) url += "gradeAndAttend/grade.php";
+		else if ( page.equals(Page.Attendance)) url += "gradeAndAttend/attend.php";
+		
+		HttpGet get = new HttpGet(url);
+		HttpResponse response = client.execute(get);
+		return readResponse(response);
+	}
+	
 
 	public boolean login(String ID, String password) throws Exception {	
 		HttpPost post = new HttpPost("https://stars.bilkent.edu.tr/srs/ajax/login.php");
