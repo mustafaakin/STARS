@@ -11,21 +11,27 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int ic_action_search=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
+        public static final int attendance=0x7f020000;
+        public static final int background=0x7f020001;
+        public static final int exams=0x7f020002;
+        public static final int grades=0x7f020003;
+        public static final int ic_action_search=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int logo=0x7f020006;
+        public static final int transcript=0x7f020007;
     }
     public static final class id {
-        public static final int LoginButton=0x7f070004;
+        public static final int LoginButton=0x7f070005;
         public static final int RowDescription=0x7f070008;
         public static final int RowGrade=0x7f070007;
-        public static final int lstMenu=0x7f070006;
+        public static final int logo=0x7f070000;
         public static final int menu_settings=0x7f07000a;
+        public static final int myGrid=0x7f070006;
         public static final int seperatorText=0x7f070009;
-        public static final int textView1=0x7f070000;
-        public static final int textView2=0x7f070002;
-        public static final int textView3=0x7f070005;
-        public static final int txtID=0x7f070001;
-        public static final int txtPass=0x7f070003;
+        public static final int textView1=0x7f070001;
+        public static final int textView2=0x7f070003;
+        public static final int txtID=0x7f070002;
+        public static final int txtPass=0x7f070004;
     }
     public static final class layout {
         public static final int activity_grades=0x7f030000;
@@ -48,9 +54,6 @@ public final class R {
     }
     public static final class style {
         public static final int AppTheme=0x7f050000;
-        /**  Any customizations for your app running on pre-3.0 devices here 
- Any customizations for your app running on pre-3.0 devices here 
-         */
         public static final int MyAppTheme=0x7f050001;
     }
 }

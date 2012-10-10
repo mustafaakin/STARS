@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:padding="10dp" >
-
+
     <TextView
         android:id="@+id/RowGrade"
         android:layout_width="wrap_content"
@@ -11,6 +11,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="30 / 100"
+        android:textColor="#FFFFFF"
         android:textSize="20dp" />
 
     <TextView
@@ -21,6 +22,7 @@
         android:layout_alignBottom="@+id/RowGrade"
         android:layout_alignParentLeft="true"
         android:text="Description"
+        android:textColor="#FFFFFF"
         android:textSize="20dp" />
 
 </RelativeLayout>

@@ -82,7 +82,7 @@ public class SRS  implements Serializable{
 	}
 	private String getPage(Page page) throws Exception{
 		String url = "https://stars.bilkent.edu.tr/srs/ajax/";
-		if ( page.equals(Page.Grade)) url += "gradeAndAttend/grade.php?semester=20091";
+		if ( page.equals(Page.Grade)) url += "gradeAndAttend/grade.php";
 		else if ( page.equals(Page.Attendance)) url += "gradeAndAttend/attend.php";
 		
 		HttpGet get = new HttpGet(url);
@@ -90,7 +90,6 @@ public class SRS  implements Serializable{
 		return readResponse(response);
 	}
 	
-
 	public boolean login(String ID, String password) throws Exception {	
 		HttpPost post = new HttpPost("https://stars.bilkent.edu.tr/srs/ajax/login.php");
 

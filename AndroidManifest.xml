@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.mustafaak.stars"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.1" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,6 +14,7 @@
         android:theme="@style/MyAppTheme"
         android:label="@string/app_name" >
         <activity
+            android:windowSoftInputMode="stateHidden"
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
             <intent-filter>
